@@ -1,0 +1,3 @@
+@echo off
+echo Starting Patrick Bateman Experience...
+npm run dev

@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background: linear-gradient(45deg, #1a1a1a, #000);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(139, 0, 0, 0.05) 10px,
+        rgba(139, 0, 0, 0.05) 20px
+    );
+    pointer-events: none;
+}
+
+.blood-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blood-drop {
+    position: absolute;
+    width: 20vh;  /* Smaller size */
+    height: 20vh; /* Smaller size */
+    background: #8b0000;
+    border-radius: 0 50% 50% 50%;
+    transform: rotate(45deg);
+    animation: drip 6s infinite;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    opacity: 0.9;
+}
+
+.blood-drop::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    transform: scale(0.7);
+    opacity: 0.7;
+}
+
+.blood-drop:nth-child(1) { left: 20%; animation-delay: 0s; }
+.blood-drop:nth-child(2) { left: 20%; animation-delay: 3s; }
+
+@keyframes drip {
+    0% {
+        transform: translateY(-100px) rotate(45deg) scale(1);
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(45deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.content {
+    text-align: center;
+    z-index: 2;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);
+}
+
+.psycho-button {
+    background: linear-gradient(145deg, #8b0000, #600);
+    color: #fff;
+    border: none;
+    padding: 25px 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.5),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    max-width: 800px;
+    white-space: normal;
+    word-wrap: break-word;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.psycho-button:hover {
+    background: linear-gradient(145deg, #a00000, #800);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 40px rgba(139, 0, 0, 0.8),
+                inset 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.psycho-button:active {
+    transform: scale(0.98);
+}
+
+#video-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#video-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .psycho-button {
+        font-size: 16px;
+        padding: 15px 30px;
+    }
+    
+    #youtube-video {
+        width: 100%;
+        height: 240px;
+    }
+}
