@@ -7,8 +7,9 @@ export default defineConfig({
     open: true
   },
   build: {
-    outDir: '../dist',
+    outDir: '../',  // Build directly to root directory
     assetsDir: 'assets',
-    minify: true
+    minify: true,
+    emptyOutDir: false  // Don't delete other files in root
   }
 });
